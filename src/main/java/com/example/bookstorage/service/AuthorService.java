@@ -8,20 +8,20 @@ import java.util.List;
 
 @Service
 public interface AuthorService {
-    List<Author> findAll();
+    List<AuthorDTO> findAll();
 
-    Author findById(Long id);
+    AuthorDTO findById(Long id);
 
-    Author addAuthor(Author author);
+    AuthorDTO addAuthor(AuthorDTO authorDTO);
 
     void deleteAuthorById(Long id);
 
-    List<Author> findAuthorsByName(String name);
+    List<AuthorDTO> findAuthorsByName(String name);
 
-    List<Author> findAuthorsByDateOfBirth(String dateOfBirth);
+    List<AuthorDTO> findAuthorsByDateOfBirth(String dateOfBirth);
 
-    Author createAuthor(Author author);
 
-    Author updateAuthor(Author author);
+
+    AuthorDTO updateAuthor(Long id,AuthorDTO authorDTO);
 
 }

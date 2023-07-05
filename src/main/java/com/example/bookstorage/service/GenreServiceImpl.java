@@ -2,10 +2,10 @@ package com.example.bookstorage.service;
 
 import com.example.bookstorage.dto.GenreDTO;
 import com.example.bookstorage.entity.Genre;
+import com.example.bookstorage.exceptions.GenreNotFoundException;
 import com.example.bookstorage.repository.GenreRep;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.crossstore.ChangeSetPersister;
 
 import java.util.Optional;
 

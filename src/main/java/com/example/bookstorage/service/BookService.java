@@ -1,5 +1,6 @@
 package com.example.bookstorage.service;
 
+import com.example.bookstorage.dto.BookDTO;
 import com.example.bookstorage.entity.Book;
 import org.springframework.stereotype.Service;
 
@@ -7,18 +8,16 @@ import java.util.List;
 
 @Service
 public interface BookService {
-    List<Book> findAll();
+    List<BookDTO> findAll();
 
 
-    Book findById(Long id);
+    BookDTO findById(Long id);
 
-    Book addBook(Book book);
+    BookDTO addBook(BookDTO bookDTO);
 
     void deleteBookById(Long id);
 
-    List<Book> findBooksByName(String name);
-
-    Book createBook(Book book);
-
-    Book updateBook(Book book);
+    List<BookDTO> findBooksByName(String name);
+    
+    BookDTO updateBook(Long id,BookDTO bookDTO);
 }
