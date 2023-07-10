@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+
 public interface AuthorService {
     List<AuthorDTO> findAll();
 
@@ -16,9 +16,9 @@ public interface AuthorService {
 
     void deleteAuthorById(Long id);
 
-    List<AuthorDTO> findAuthorsByName(String name);
+  List<AuthorDTO> findAuthorsByName(String name);
 
-    List<AuthorDTO> findAuthorsByDateOfBirth(String dateOfBirth);
+   /* List<AuthorDTO> findAuthorsByDateOfBirth(String dateOfBirth);*/
 
 
 

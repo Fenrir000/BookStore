@@ -19,8 +19,10 @@ public class BookDTO {
     @NotBlank
     private String name;
     @Min(1)
-    @NotBlank
+
     private int pages;
+
+    private int year;
 
     private List<Author> authors;
 }

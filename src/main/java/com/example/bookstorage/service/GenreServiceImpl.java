@@ -6,9 +6,10 @@ import com.example.bookstorage.exceptions.GenreNotFoundException;
 import com.example.bookstorage.repository.GenreRep;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
+@Service
 public class GenreServiceImpl implements GenreService {
     private ModelMapper modelMapper;
     private GenreRep  genreRep;

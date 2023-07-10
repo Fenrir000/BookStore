@@ -6,10 +6,11 @@ import com.example.bookstorage.exceptions.BookNotFoundException;
 import com.example.bookstorage.repository.BookRep;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Service
 public class BookServiceImpl implements BookService {
     private final BookRep bookRep;
     private final ModelMapper modelMapper;
@@ -21,12 +22,13 @@ public class BookServiceImpl implements BookService {
 
     @Transactional
     public List<BookDTO> findAll() {
-        //TODO BookNotFoundException
-        List<Book> books= bookRep.findAllBooks().orElseThrow(BookNotFoundException::new);
-        return books.stream().map(book -> modelMapper.map(book, BookDTO.class))
+        List<Book> books = bookRep.findAll();
+        if (books.isEmpty()) {
+            throw new BookNotFoundException();
+        }
+        return books.stream()
+                .map(book -> modelMapper.map(book, BookDTO.class))
                 .collect(Collectors.toList());
-
-
     }
 
     @Transactional
@@ -50,8 +52,12 @@ public class BookServiceImpl implements BookService {
 
     @Transactional
     public List<BookDTO> findBooksByName(String name) {
-        List<Book> books = bookRep.findAllByName(name).orElseThrow(BookNotFoundException::new);
-        return books.stream().map(book -> modelMapper.map(book, BookDTO.class))
+        List<Book> books = bookRep.findAllByName(name);
+        if (books.isEmpty()) {
+            throw new BookNotFoundException();
+        }
+        return books.stream()
+                .map(book -> modelMapper.map(book, BookDTO.class))
                 .collect(Collectors.toList());
     }
 

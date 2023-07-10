@@ -1,5 +1,6 @@
 package com.example.bookstorage.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -20,8 +21,10 @@ public class Book {
     @NotBlank
     private String name;
     @Min(1)
-    @NotBlank
     private int pages;
+
+    private int year;
+    @JsonIgnore
     @ManyToMany(mappedBy = "books")
     private List<Author> authors;
 

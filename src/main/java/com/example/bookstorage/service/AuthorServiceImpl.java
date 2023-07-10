@@ -6,10 +6,13 @@ import com.example.bookstorage.exceptions.AuthorNotFoundException;
 import com.example.bookstorage.repository.AuthorRep;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Service
 public class AuthorServiceImpl implements AuthorService {
     private final AuthorRep authorRep;
     private final ModelMapper modelMapper;
@@ -21,10 +24,16 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Transactional
     public List<AuthorDTO> findAll() {
-        List<Author> authors=authorRep.findAllAuthors().orElseThrow(AuthorNotFoundException::new);
-        return authors.stream().
+        List<Author> authors=authorRep.findAll();
+
+       /* return authors.stream().
                 map(author -> modelMapper.map(author, AuthorDTO.class)).
-                toList();
+                toList();*/
+        List<AuthorDTO> res=new ArrayList<>();
+        for(Author a : authors){
+            res.add(modelMapper.map(a, AuthorDTO.class));
+        }
+        return res;
     }
 
     @Transactional
@@ -50,19 +59,17 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Transactional
     public List<AuthorDTO> findAuthorsByName(String name) {
-        return authorRep.findAuthorsByName().
-                orElseThrow(AuthorNotFoundException::new).
+        return authorRep.findAuthorsByName(name).
                 stream().map(author -> (modelMapper.map(author, AuthorDTO.class))).
                 toList();
     }
 
-    @Transactional
-    public List<AuthorDTO> findAuthorsByDateOfBirth(String dateOfBirth) {
-        return authorRep.findAuthorsByBirthDate().
-                orElseThrow(AuthorNotFoundException::new).
+  /*  @Transactional
+    public List<AuthorDTO> findAuthorsByDateOfBirth(LocalDate birthDate) {
+        return authorRep.findAuthorsByBirthDate( birthDate).
                 stream().map(author -> (modelMapper.map(author, AuthorDTO.class))).
                 toList();
-    }
+    }*/
 
 
 

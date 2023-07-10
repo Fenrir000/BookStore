@@ -1,5 +1,6 @@
 package com.example.bookstorage.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -23,6 +24,7 @@ public class Author {
    // @Temporal(TemporalType.DATE)
    @NotBlank
     private LocalDate birthDate;
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name= "book_author",
     joinColumns = @JoinColumn(name="author_id"),

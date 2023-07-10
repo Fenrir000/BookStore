@@ -10,6 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface BookRep extends JpaRepository<Book,Long> {
-    Optional<List<Book>> findAllBooks();
-    Optional<List<Book>> findAllByName(String s);
+
+    List<Book> findAllByName(String name);
 }
